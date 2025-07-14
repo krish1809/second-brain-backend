@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: second-brain-backend
+    env: node
+    buildCommand: |
+      npm install
+      npm run build
+    startCommand: npm run start
+    plan: free
+    branch: main
