@@ -4,19 +4,30 @@ services:
   - type: web
     name: second-brain-backend
     env: node
+    runtime: node
+    nodeVersion: 18
     plan: free
     region: oregon
+    branch: main
+    autoDeploy: true
+
     buildCommand: |
       npm install
       npm run build
+
     startCommand: node dist/index.js
-    branch: main
-    runtime: node
-    nodeVersion: 18
-    autoDeploy: true
+
     buildFilter:
       paths:
         - src/**
         - package.json
         - package-lock.json
         - tsconfig.json
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # - key: MONGO_URI
+      #   value: your_actual_mongo_uri
+      # - key: JWT_SECRET
+      #   value: your_jwt_secret_key
